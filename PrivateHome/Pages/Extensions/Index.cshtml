@@ -1,0 +1,14 @@
+﻿@page
+@model PrivateHome.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<a class="btn btn-success" asp-page="/Extensions/Create">New Extension</a>
+
+@foreach(var extension in Model.Extensions)
+{
+    <p>@extension.ExtensionName</p>
+}
