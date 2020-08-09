@@ -9,6 +9,16 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PrivateHome.ExtensionContracts\PrivateHome.ExtensionContracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="extensions.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 
 
 </Project>

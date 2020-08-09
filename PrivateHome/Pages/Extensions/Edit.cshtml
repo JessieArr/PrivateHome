@@ -1,0 +1,12 @@
+﻿@page
+@model PrivateHome.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<form method="post">
+    <input asp-for="FileContents" />
+    <input class="btn btn-success" type="submit" value="Submit" />
+</form>

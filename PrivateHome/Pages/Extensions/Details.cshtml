@@ -1,0 +1,10 @@
+﻿@page
+@model PrivateHome.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>@Model.Extension.ExtensionName</h1>
+
+<a class="btn btn-info" asp-page="/Extensions/Edit" asp-route-id="@Model.Extension.ID">Edit</a>
+<h3>@Model.Summary</h3>
