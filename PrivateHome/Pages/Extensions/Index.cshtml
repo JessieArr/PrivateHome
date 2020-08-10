@@ -10,5 +10,5 @@
 
 @foreach(var extension in Model.Extensions)
 {
-    <a asp-page="/Extensions/Details" asp-route-id="@extension.ID">@extension.ExtensionName</a>
+    <a asp-page="/Extensions/Details" asp-route-id="@extension.ID"><h4>@extension.ExtensionName</h4></a>
 }

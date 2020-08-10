@@ -44,7 +44,7 @@ namespace PrivateHome.Services
 
                     foreach (Diagnostic diagnostic in failures)
                     {
-                        result.CompilerErrors.Add(diagnostic.GetMessage());
+                        result.CompilerErrors.Add(diagnostic.ToString());
                     }
                 }
                 else

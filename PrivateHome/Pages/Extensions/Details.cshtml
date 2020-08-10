@@ -7,4 +7,15 @@
 <h1>@Model.Extension.ExtensionName</h1>
 
 <a class="btn btn-info" asp-page="/Extensions/Edit" asp-route-id="@Model.Extension.ID">Edit</a>
-<h3>@Model.Summary</h3>
+@if (Model.CompilerErrors.Count == 0)
+{
+    <h3>@Model.Summary</h3>
+}
+else
+{
+    <h3>Compiler Errors occurred:</h3>
+    @foreach(var error in Model.CompilerErrors)
+    {
+        <p>@error</p>
+    }
+}

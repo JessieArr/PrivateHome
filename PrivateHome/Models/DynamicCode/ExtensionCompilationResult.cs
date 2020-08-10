@@ -10,6 +10,6 @@ namespace PrivateHome.Models.DynamicCode
     {
         public bool Succeeded { get; set; }
         public Assembly Assembly { get; set; }
-        public List<string> CompilerErrors { get; set; }
+        public List<string> CompilerErrors { get; set; } = new List<string>();
     }
 }

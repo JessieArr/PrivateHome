@@ -13,6 +13,7 @@ namespace PrivateHome
     {
         public Extension Extension { get; set; }
         public string Summary { get; set; }
+        public List<string> CompilerErrors { get; set; } = new List<string>();
         public void OnGet(Guid id)
         {
             var service = new ExtensionService();
@@ -28,6 +29,10 @@ namespace PrivateHome
                 {
                     var extension = codeService.GetExtensionFromAssembly(result.Assembly);
                     Summary = extension.GetSummary();
+                }
+                else
+                {
+                    CompilerErrors = result.CompilerErrors;
                 }
             }
         }
