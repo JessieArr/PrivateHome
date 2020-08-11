@@ -1,7 +1,7 @@
 ﻿using System;
 using PrivateHome.ExtensionContracts;
 
-namespace PrivateHome.DefaultExtensions 
+namespace PrivateHome.DefaultExtensions.HelloWorld
 { 
     public class HelloWorld : IExtension 
     { 

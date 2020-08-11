@@ -54,5 +54,15 @@ namespace PrivateHome.Tests.Unit
             var summary = extension.GetSummary();
             Assert.True(!String.IsNullOrEmpty(summary));
         }
+
+        [Fact]
+        public void GetExtensionFromAssembly_HttpGet_SummaryReturns()
+        {
+            var contents = ExampleExtensionHelper.GetHttpGetExtension();
+            var result = SUT.GetAssemblyFromText(contents);
+            var extension = SUT.GetExtensionFromAssembly(result.Assembly);
+            var summary = extension.GetSummary();
+            Assert.True(!String.IsNullOrEmpty(summary));
+        }
     }
 }
