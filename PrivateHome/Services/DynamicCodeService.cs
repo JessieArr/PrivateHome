@@ -2,6 +2,7 @@
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.VisualStudio.Web.CodeGeneration;
 using PrivateHome.ExtensionContracts;
+using PrivateHome.ExtensionContracts.Models;
 using PrivateHome.ExtensionContracts.Utilities;
 using PrivateHome.Models.DynamicCode;
 using System;
@@ -16,7 +17,13 @@ namespace PrivateHome.Services
 {
     public class DynamicCodeService
     {
-        public ExtensionCompilationResult GetAssemblyFromText(string code)
+        private ILogService _LogService;
+        public DynamicCodeService(ILogService logService)
+        {
+            _LogService = logService;
+        }
+
+        public ExtensionCompilationResult GetAssemblyFromText(string code, string extensionName)
         {
             var syntaxTree = CSharpSyntaxTree.ParseText(code, CSharpParseOptions.Default.WithLanguageVersion(LanguageVersion.CSharp8));
             string assemblyName = Path.GetRandomFileName();
@@ -46,6 +53,10 @@ namespace PrivateHome.Services
                     var failures = compilerOutput.Diagnostics.Where(diagnostic =>
                         diagnostic.IsWarningAsError ||
                         diagnostic.Severity == DiagnosticSeverity.Error);
+
+                    var errorCount = failures.Count();
+                    var logMessage = new LogMessage($"Extension \"{extensionName}\" compilation failed with {errorCount} errors.", LogLevelEnum.Error, true, null);
+                    _LogService.WriteLog(logMessage);
 
                     foreach (Diagnostic diagnostic in failures)
                     {

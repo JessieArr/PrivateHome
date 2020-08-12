@@ -1,4 +1,5 @@
-﻿using PrivateHome.Services;
+﻿using Moq;
+using PrivateHome.Services;
 using PrivateHome.Tests.Helpers;
 using System;
 using System.Collections.Generic;
@@ -10,21 +11,23 @@ namespace PrivateHome.Tests.Unit
     public class DynamicCodeServiceTests
     {
         private DynamicCodeService SUT { get; set; }
+        private Mock<ILogService> _MockLogService { get; set; }
         public DynamicCodeServiceTests()
         {
-            SUT = new DynamicCodeService();
+            _MockLogService = new Mock<ILogService>();
+            SUT = new DynamicCodeService(_MockLogService.Object);
         }
 
         [Fact]
         public void GetAssemblyFromText_EmptyString_DoesNotThrow()
         {
-            var result = SUT.GetAssemblyFromText("");
+            var result = SUT.GetAssemblyFromText("", "TestExtension");
         }
 
         [Fact]
         public void GetAssemblyFromText_EmptyString_Succeeds()
         {
-            var result = SUT.GetAssemblyFromText("");
+            var result = SUT.GetAssemblyFromText("", "TestExtension");
             Assert.True(result.Succeeded);
         }
 
@@ -32,7 +35,7 @@ namespace PrivateHome.Tests.Unit
         public void GetAssemblyFromText_HelloWorld_Succeeds()
         {
             var contents = ExampleExtensionHelper.GetHelloWorldExtension();
-            var result = SUT.GetAssemblyFromText(contents);
+            var result = SUT.GetAssemblyFromText(contents, "TestExtension");
             Assert.True(result.Succeeded);
         }
 
@@ -40,7 +43,7 @@ namespace PrivateHome.Tests.Unit
         public void GetExtensionFromAssembly_HelloWorld_NotNull()
         {
             var contents = ExampleExtensionHelper.GetHelloWorldExtension();
-            var result = SUT.GetAssemblyFromText(contents);
+            var result = SUT.GetAssemblyFromText(contents, "TestExtension");
             var extension = SUT.GetExtensionFromAssembly(result.Assembly);
             Assert.NotNull(extension);
         }
@@ -49,7 +52,7 @@ namespace PrivateHome.Tests.Unit
         public void GetExtensionFromAssembly_HelloWorld_SummaryReturns()
         {
             var contents = ExampleExtensionHelper.GetHelloWorldExtension();
-            var result = SUT.GetAssemblyFromText(contents);
+            var result = SUT.GetAssemblyFromText(contents, "TestExtension");
             var extension = SUT.GetExtensionFromAssembly(result.Assembly);
             var summary = extension.GetSummary();
             Assert.True(!String.IsNullOrEmpty(summary));
@@ -59,7 +62,7 @@ namespace PrivateHome.Tests.Unit
         public void GetExtensionFromAssembly_HttpGet_SummaryReturns()
         {
             var contents = ExampleExtensionHelper.GetHttpGetExtension();
-            var result = SUT.GetAssemblyFromText(contents);
+            var result = SUT.GetAssemblyFromText(contents, "TestExtension");
             var extension = SUT.GetExtensionFromAssembly(result.Assembly);
             var summary = extension.GetSummary();
             Assert.True(!String.IsNullOrEmpty(summary));

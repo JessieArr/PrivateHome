@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using PrivateHome.Models;
 using PrivateHome.Services;
 
-namespace PrivateHome
+namespace PrivateHome.Extensions
 {
     public class CreateModel : PageModel
     {

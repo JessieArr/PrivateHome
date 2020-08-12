@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using PrivateHome.ExtensionContracts.Models;
+using PrivateHome.Models;
+using PrivateHome.Services;
 
 namespace PrivateHome
 {
@@ -15,6 +18,14 @@ namespace PrivateHome
     {
         public static void Main(string[] args)
         {
+            var logService = new LogService();
+            logService.WriteLog(new LogMessage("Application starting up.", LogLevelEnum.Info, true, null));
+
+            AppDomain.CurrentDomain.ProcessExit += (sender, eventArgs) =>
+            {
+                logService.WriteLog(new LogMessage("Application shutting down.", LogLevelEnum.Info, true, null));
+            };
+
             var serviceName = "privatehome.local";
             var mdns = new MulticastService();
             mdns.QueryReceived += (s, e) =>

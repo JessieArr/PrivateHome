@@ -12,7 +12,7 @@ using PrivateHome.ExtensionContracts;
 using PrivateHome.Models;
 using PrivateHome.Services;
 
-namespace PrivateHome
+namespace PrivateHome.Extensions
 {
     public class EditModel : PageModel
     {

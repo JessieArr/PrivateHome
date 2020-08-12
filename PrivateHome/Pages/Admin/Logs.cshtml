@@ -1,0 +1,57 @@
+﻿@page
+@model PrivateHome.Admin.LogsModel
+@{
+    ViewData["Title"] = "Logs";
+}
+
+<h1>Logs:</h1>
+
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <td>Time</td>
+            <td>Level</td>
+            <td>System?</td>
+            <td>Extension</td>
+            <td>Message</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var log in Model.Logs)
+        {
+        <tr>
+            <td>@log.Time.ToLocalTime()</td>
+            @if (log.Level == ExtensionContracts.Models.LogLevelEnum.Critical)
+            {
+                <td class="text-danger">Critical</td>
+            }
+            @if (log.Level == ExtensionContracts.Models.LogLevelEnum.Error)
+            {
+                <td class="text-danger">Error</td>
+            }
+            @if (log.Level == ExtensionContracts.Models.LogLevelEnum.Warning)
+            {
+                <td class="text-warning">Warning</td>
+            }
+            @if (log.Level == ExtensionContracts.Models.LogLevelEnum.Info)
+            {
+                <td class="text-info">Info</td>
+            }
+            @if (log.Level == ExtensionContracts.Models.LogLevelEnum.Debug)
+            {
+                <td>Debug</td>
+            }
+            @if (@log.IsSystem)
+            {
+                <td class="text-success">Yes</td>
+            }
+            else
+            {
+                <td>No</td>
+            }
+            <td>@log.ExtensionName</td>
+            <td>@log.Message</td>
+        </tr>
+        }
+    </tbody>
+</table>

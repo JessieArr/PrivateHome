@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PrivateHome.Services;
 
 namespace PrivateHome
 {
@@ -24,6 +25,9 @@ namespace PrivateHome
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+            services.AddScoped<ILogService, LogService>();
+            services.AddScoped<DynamicCodeService, DynamicCodeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
