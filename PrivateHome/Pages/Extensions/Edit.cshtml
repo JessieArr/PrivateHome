@@ -4,9 +4,11 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<form method="post">
-    <textarea class="form-control" asp-for="FileContents"></textarea>
-    <input class="btn btn-success" type="submit" value="Submit" />
-</form>
+<h1>Editing Extension @Model.Extension.ExtensionName</h1>
+<h4>Files:</h4>
+@foreach(var file in Model.Extension.Files)
+{
+    <a asp-page="/Extensions/EditFile" 
+       asp-route-id="@Model.Extension.ID"
+       asp-route-filePath="@file.FullPath">File: @file.FullPath</a>
+}

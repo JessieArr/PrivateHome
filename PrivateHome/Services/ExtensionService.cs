@@ -54,7 +54,7 @@ namespace PrivateHome.Services
 
         public void SaveExtensions()
         {
-            var serialized = JsonConvert.SerializeObject(Extensions);
+            var serialized = JsonConvert.SerializeObject(Extensions, Formatting.Indented);
             File.WriteAllText(_FileName, serialized);
         }
     }

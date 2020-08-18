@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -33,6 +34,7 @@ namespace PrivateHome.Services
                 MetadataReference.CreateFromFile(typeof(Enumerable).Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(IExtension).Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(HttpClient).Assembly.Location),
+                MetadataReference.CreateFromFile(typeof(HttpStatusCode).Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(System.Runtime.AssemblyTargetedPatchBandAttribute).Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo).Assembly.Location),
             };

@@ -7,7 +7,7 @@ namespace PrivateHome.DefaultExtensions.HelloWorld
     { 
         public string GetSummary() 
         { 
-            return "Hello, world!"; 
+            return "<p>Hello, world!<p>"; 
         } 
     } 
 }

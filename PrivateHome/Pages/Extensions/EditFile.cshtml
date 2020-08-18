@@ -1,0 +1,12 @@
+﻿@page
+@model PrivateHome.EditFileModel
+@{
+    ViewData["Title"] = "EditFile";
+}
+
+<h1>Editing @Model.ExtensionFile.FileName:</h1>
+
+<form method="post">
+    <textarea class="form-control" asp-for="FileContents"></textarea>
+    <input class="btn btn-success" type="submit" value="Submit" />
+</form>

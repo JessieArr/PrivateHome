@@ -7,8 +7,12 @@ namespace PrivateHome.Models
 {
     public class ExtensionFile
     {
-        public string FileName { get; set; }
-        public string Path { get; set; }
+        public string FileName { get
+            {
+                return FullPath.Substring(FullPath.LastIndexOf('/') + 1);
+            }
+        }
+        public string FullPath { get; set; }
         public string Contents { get; set; }
     }
 }

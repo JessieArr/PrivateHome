@@ -14,8 +14,9 @@ namespace PrivateHome.DefaultExtensions.HttpGet
 
         public string GetSummary()
         {
+            var url = "http://google.com";
             var result = _HttpClient.GetAsync("https://google.com").Result;
-            return result.Content.ReadAsStringAsync().Result;
+            return $"<p><a href=\"{url}\" target=\"_blank\" >{url}</a> status: {result.StatusCode}</p>";
         }
     }
 }
